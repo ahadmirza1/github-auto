@@ -1,0 +1,5 @@
+- Backend: Laravel
+- Frontend: React / Next.js
+- Queue: Redis
+- DB: MySQL/Postgres
+- Integrations: GitHub, Jira, ClickUp

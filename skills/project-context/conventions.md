@@ -1,0 +1,3 @@
+- Branch: feature/JIRA-123-name
+- Commit: meaningful messages
+- PR: auto-generated summaries

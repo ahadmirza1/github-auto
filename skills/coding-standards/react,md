@@ -1,0 +1,11 @@
+# React Standards
+
+- No API calls inside components
+- Use services/api layer
+- Keep components small (<150 lines)
+- Use custom hooks for logic reuse
+- Feature-based folder structure
+
+Naming:
+- Components: PascalCase
+- Hooks: useSomething
