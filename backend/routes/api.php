@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommitsController;
 use App\Http\Controllers\Integrations\GitHubController;
+use App\Http\Controllers\Integrations\IntegrationsController;
 use App\Http\Controllers\RepositoriesController;
 use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,9 @@ Route::post('/webhooks/github', [WebhookController::class, 'github'])
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth/me', [AuthController::class, 'me']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
+
+    // Integrations
+    Route::get('/integrations', [IntegrationsController::class, 'index']);
 
     // GitHub integration
     Route::get('/integrations/github/redirect', [GitHubController::class, 'redirect']);
