@@ -29,7 +29,7 @@ export default function DashboardPage() {
         <h1 className="text-2xl font-bold">
           {user ? `Welcome, ${user.name}` : 'Dashboard'}
         </h1>
-        <p className="text-sm text-gray-500 mt-0.5">Your git workflow, automated.</p>
+        <p className="text-sm text-gray-700 mt-0.5">Your git workflow, automated.</p>
       </div>
 
       {/* Stats */}
@@ -60,7 +60,7 @@ export default function DashboardPage() {
                   )}
                 </div>
                 {item.done ? (
-                  <span className="text-sm text-gray-400 line-through">{item.label}</span>
+                  <span className="text-sm text-gray-600 line-through">{item.label}</span>
                 ) : (
                   <Link href={item.href} className="text-sm text-blue-600 hover:underline">
                     {item.label} →
@@ -71,7 +71,7 @@ export default function DashboardPage() {
           </ul>
           <Link
             href="/dashboard/guide"
-            className="mt-4 inline-block text-xs text-gray-400 hover:text-gray-600"
+            className="mt-4 inline-block text-xs text-gray-600 hover:text-gray-600"
           >
             Read the full guide →
           </Link>
@@ -90,7 +90,7 @@ export default function DashboardPage() {
                   className="flex items-center justify-between bg-white border rounded-xl px-5 py-3 hover:border-blue-300 transition-colors"
                 >
                   <span className="font-medium text-sm">{repo.full_name}</span>
-                  <span className="text-xs text-gray-400">View commits →</span>
+                  <span className="text-xs text-gray-600">View commits →</span>
                 </Link>
               </li>
             ))}
@@ -104,7 +104,7 @@ export default function DashboardPage() {
 function StatCard({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="bg-white border rounded-xl p-5">
-      <p className="text-xs text-gray-400 uppercase tracking-wide">{label}</p>
+      <p className="text-xs text-gray-700 uppercase tracking-wide font-semibold">{label}</p>
       <p className="text-3xl font-bold mt-1">{value}</p>
     </div>
   )

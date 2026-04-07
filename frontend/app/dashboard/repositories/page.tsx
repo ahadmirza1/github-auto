@@ -8,7 +8,7 @@ export default function RepositoriesPage() {
   const sync = useSyncRepositories()
   const activateWebhook = useActivateWebhook()
 
-  if (isLoading) return <p className="text-sm text-gray-500">Loading repositories…</p>
+  if (isLoading) return <p className="text-sm text-gray-700">Loading repositories…</p>
 
   return (
     <div>
@@ -24,7 +24,7 @@ export default function RepositoriesPage() {
       </div>
 
       {!data?.data.length && (
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-700">
           No repositories found. Connect GitHub and sync.
         </p>
       )}
@@ -42,7 +42,7 @@ export default function RepositoriesPage() {
               >
                 {repo.full_name}
               </Link>
-              <p className="text-xs text-gray-400 mt-0.5">
+              <p className="text-xs text-gray-600 mt-0.5">
                 {repo.private ? 'Private' : 'Public'} · {repo.default_branch}
               </p>
             </div>

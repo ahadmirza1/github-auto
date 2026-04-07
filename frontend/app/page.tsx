@@ -29,7 +29,7 @@ export default function Home() {
         <h1 className="text-5xl font-bold tracking-tight text-gray-900 max-w-2xl leading-tight">
           Every commit, explained by AI
         </h1>
-        <p className="mt-5 text-lg text-gray-500 max-w-xl">
+        <p className="mt-5 text-lg text-gray-700 max-w-xl">
           Push code, get instant AI summaries. Link branches to Jira or ClickUp. Auto-create PRs with smart reviewer suggestions.
         </p>
 
@@ -54,7 +54,7 @@ export default function Home() {
             <div key={f.title} className="border rounded-xl p-5 bg-gray-50">
               <div className="text-2xl mb-3">{f.icon}</div>
               <h3 className="font-semibold text-sm text-gray-900">{f.title}</h3>
-              <p className="text-xs text-gray-500 mt-1 leading-relaxed">{f.description}</p>
+              <p className="text-xs text-gray-700 mt-1 leading-relaxed">{f.description}</p>
             </div>
           ))}
         </div>

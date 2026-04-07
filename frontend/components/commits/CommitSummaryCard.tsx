@@ -22,7 +22,7 @@ export default function CommitSummaryCard({ commit }: Props) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="font-medium text-sm">{firstLine}</p>
-          <p className="text-xs text-gray-400 mt-0.5">
+          <p className="text-xs text-gray-800 mt-0.5">
             <code className="font-mono">{shortSha}</code> ·{' '}
             {commit.author_login ?? commit.author_name} ·{' '}
             {new Date(commit.committed_at).toLocaleString()}
@@ -40,10 +40,10 @@ export default function CommitSummaryCard({ commit }: Props) {
       {/* AI Summary */}
       {summary?.status === 'completed' && (
         <div className="space-y-2">
-          <p className="text-sm text-gray-700">{summary.summary}</p>
+          <p className="text-sm text-gray-900">{summary.summary}</p>
 
           {(summary.highlights?.key_changes?.length ?? 0) > 0 && (
-            <ul className="text-xs text-gray-600 space-y-0.5 pl-3 border-l-2 border-blue-200">
+            <ul className="text-xs text-gray-800 space-y-0.5 pl-3 border-l-2 border-blue-200">
               {summary.highlights!.key_changes.map((change, i) => (
                 <li key={i}>{change}</li>
               ))}

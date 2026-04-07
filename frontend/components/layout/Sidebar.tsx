@@ -36,7 +36,7 @@ export default function Sidebar() {
             className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
               isActive(href, exact)
                 ? 'bg-blue-50 text-blue-700'
-                : 'text-gray-600 hover:bg-gray-100'
+                : 'text-gray-800 hover:bg-gray-100'
             }`}
           >
             {label}
@@ -66,7 +66,7 @@ export default function Sidebar() {
       <div className="p-4 border-t">
         <button
           onClick={() => logout.mutate()}
-          className="w-full text-sm text-gray-500 hover:text-red-600 text-left px-3 py-2"
+          className="w-full text-sm text-gray-700 hover:text-red-600 text-left px-3 py-2"
         >
           Sign out
         </button>

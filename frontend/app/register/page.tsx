@@ -20,7 +20,7 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-sm bg-white rounded-2xl shadow p-8">
         <h1 className="text-2xl font-bold mb-1">Create account</h1>
-        <p className="text-sm text-gray-400 mb-6">Start automating your git workflow</p>
+        <p className="text-sm text-gray-600 mb-6">Start automating your git workflow</p>
 
         {register.error && (
           <p className="text-red-600 text-sm mb-4 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
@@ -55,7 +55,7 @@ export default function RegisterPage() {
           </button>
         </form>
 
-        <p className="text-sm text-gray-500 mt-4 text-center">
+        <p className="text-sm text-gray-700 mt-4 text-center">
           Already have an account?{' '}
           <Link href="/login" className="text-blue-600 hover:underline">
             Sign in

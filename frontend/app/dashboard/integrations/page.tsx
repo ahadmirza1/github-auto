@@ -31,7 +31,7 @@ function IntegrationsContent() {
   return (
     <div className="max-w-2xl">
       <h1 className="text-2xl font-bold mb-1">Integrations</h1>
-      <p className="text-sm text-gray-500 mb-6">Connect your tools to unlock the full workflow.</p>
+      <p className="text-sm text-gray-700 mb-6">Connect your tools to unlock the full workflow.</p>
 
       {banner && (
         <div
@@ -86,7 +86,7 @@ function IntegrationsContent() {
 
 export default function IntegrationsPage() {
   return (
-    <Suspense fallback={<div className="text-sm text-gray-400">Loading…</div>}>
+    <Suspense fallback={<div className="text-sm text-gray-600">Loading…</div>}>
       <IntegrationsContent />
     </Suspense>
   )
@@ -125,14 +125,14 @@ function IntegrationCard({
             </span>
           )}
           {comingSoon && (
-            <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full font-medium">
+            <span className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full font-medium">
               Coming soon
             </span>
           )}
         </div>
-        <p className="text-xs text-gray-500 leading-relaxed">{description}</p>
+        <p className="text-xs text-gray-700 leading-relaxed">{description}</p>
         {connected && connectedAs && (
-          <p className="text-xs text-gray-400 mt-1">Connected as <span className="font-medium text-gray-600">@{connectedAs}</span></p>
+          <p className="text-xs text-gray-600 mt-1">Connected as <span className="font-medium text-gray-600">@{connectedAs}</span></p>
         )}
       </div>
 
