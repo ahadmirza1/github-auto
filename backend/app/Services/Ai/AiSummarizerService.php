@@ -2,31 +2,31 @@
 
 namespace App\Services\Ai;
 
-use OpenAI\Laravel\Facades\OpenAI;
+use Anthropic\Laravel\Facades\Anthropic;
 
 class AiSummarizerService
 {
     private const MAX_DIFF_CHARS = 12000;
-    private const MODEL = 'gpt-4o-mini';
+    private const MODEL = 'claude-sonnet-4-6';
 
     public function summarizeCommit(string $commitMessage, string $diff): array
     {
         $truncatedDiff = mb_substr($diff, 0, self::MAX_DIFF_CHARS);
         $wasTruncated = mb_strlen($diff) > self::MAX_DIFF_CHARS;
 
-        $prompt = $this->buildPrompt($commitMessage, $truncatedDiff, $wasTruncated);
-
-        $response = OpenAI::chat()->create([
+        $response = Anthropic::messages()->create([
             'model' => self::MODEL,
+            'max_tokens' => 1024,
+            'system' => $this->systemPrompt(),
             'messages' => [
-                ['role' => 'system', 'content' => $this->systemPrompt()],
-                ['role' => 'user', 'content' => $prompt],
+                [
+                    'role' => 'user',
+                    'content' => $this->buildPrompt($commitMessage, $truncatedDiff, $wasTruncated),
+                ],
             ],
-            'response_format' => ['type' => 'json_object'],
-            'temperature' => 0.3,
         ]);
 
-        $content = json_decode($response->choices[0]->message->content, true);
+        $content = json_decode($response->content[0]->text, true);
 
         return [
             'summary' => $content['summary'] ?? '',
@@ -37,19 +37,18 @@ class AiSummarizerService
                 'diff_truncated' => $wasTruncated,
             ],
             'model' => self::MODEL,
-            'tokens_used' => $response->usage->totalTokens,
+            'tokens_used' => $response->usage->inputTokens + $response->usage->outputTokens,
         ];
     }
 
     private function systemPrompt(): string
     {
         return <<<PROMPT
-        You are a senior software engineer reviewing git commits. Analyze the commit message and diff,
-        then return a JSON object with these keys:
-        - summary: 2-3 sentence plain English description of what changed and why
-        - key_changes: array of strings, each describing a meaningful change (max 5)
-        - risky_files: array of file paths that have high-risk changes (migrations, auth, config)
-        - breaking_changes: array of strings describing any breaking changes (empty if none)
+        You are a senior software engineer reviewing git commits. Analyze the commit message and diff, then return ONLY a valid JSON object (no markdown, no code fences) with these exact keys:
+        - "summary": 2-3 sentence plain English description of what changed and why
+        - "key_changes": array of strings, each describing a meaningful change (max 5 items)
+        - "risky_files": array of file paths that have high-risk changes (migrations, auth, config, security)
+        - "breaking_changes": array of strings describing breaking changes (empty array if none)
         PROMPT;
     }
 
@@ -57,11 +56,6 @@ class AiSummarizerService
     {
         $truncatedNote = $truncated ? "\n[Note: diff was truncated due to size]" : '';
 
-        return <<<PROMPT
-        Commit message: {$message}
-
-        Diff:{$truncatedNote}
-        {$diff}
-        PROMPT;
+        return "Commit message: {$message}\n\nDiff:{$truncatedNote}\n{$diff}";
     }
 }
