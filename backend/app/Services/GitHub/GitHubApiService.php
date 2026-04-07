@@ -58,6 +58,16 @@ class GitHubApiService
         ]);
     }
 
+    public function listWebhooks(string $owner, string $repo): array
+    {
+        return $this->get("/repos/{$owner}/{$repo}/hooks");
+    }
+
+    public function deleteWebhook(string $owner, string $repo, int $hookId): void
+    {
+        $this->http->delete("/repos/{$owner}/{$repo}/hooks/{$hookId}");
+    }
+
     private function get(string $path, array $query = []): array
     {
         $response = $this->http->get($path, ['query' => $query]);

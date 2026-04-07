@@ -215,21 +215,25 @@ return [
     'environments' => [
         'production' => [
             'webhooks-supervisor' => [
+                'connection' => 'redis',
                 'queue' => ['webhooks'],
                 'maxProcesses' => 5,
                 'balance' => 'auto',
             ],
             'ai-supervisor' => [
+                'connection' => 'redis',
                 'queue' => ['ai'],
                 'maxProcesses' => 3,
                 'balance' => 'auto',
             ],
             'github-supervisor' => [
+                'connection' => 'redis',
                 'queue' => ['github'],
                 'maxProcesses' => 3,
                 'balance' => 'auto',
             ],
             'default-supervisor' => [
+                'connection' => 'redis',
                 'queue' => ['default'],
                 'maxProcesses' => 5,
                 'balance' => 'auto',
@@ -238,18 +242,22 @@ return [
 
         'local' => [
             'webhooks-supervisor' => [
+                'connection' => 'redis',
                 'queue' => ['webhooks'],
                 'maxProcesses' => 2,
             ],
             'ai-supervisor' => [
+                'connection' => 'redis',
                 'queue' => ['ai'],
                 'maxProcesses' => 1,
             ],
             'github-supervisor' => [
+                'connection' => 'redis',
                 'queue' => ['github'],
                 'maxProcesses' => 1,
             ],
             'default-supervisor' => [
+                'connection' => 'redis',
                 'queue' => ['default'],
                 'maxProcesses' => 2,
             ],

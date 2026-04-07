@@ -33,4 +33,13 @@ class RepositoriesController extends Controller
 
         return response()->json($repository);
     }
+
+    public function deactivateWebhook(Request $request, Repository $repository): JsonResponse
+    {
+        $this->authorize('update', $repository);
+
+        $repository = $this->repositoryService->deactivateWebhook($request->user(), $repository);
+
+        return response()->json($repository);
+    }
 }

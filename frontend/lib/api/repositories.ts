@@ -32,3 +32,8 @@ export async function activateWebhook(repositoryId: number): Promise<Repository>
   const res = await client.post<Repository>(`/repositories/${repositoryId}/webhook`)
   return res.data
 }
+
+export async function deactivateWebhook(repositoryId: number): Promise<Repository> {
+  const res = await client.delete<Repository>(`/repositories/${repositoryId}/webhook`)
+  return res.data
+}

@@ -15,7 +15,6 @@ class ProcessPushEventJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public string $queue = 'webhooks';
     public int $tries = 3;
 
     public function __construct(private readonly int $webhookEventId) {}
@@ -49,7 +48,7 @@ class ProcessPushEventJob implements ShouldQueue
 
             if ($commit->wasRecentlyCreated) {
                 CommitSummary::create(['commit_id' => $commit->id, 'status' => 'pending', 'summary' => '']);
-                GenerateCommitSummaryJob::dispatch($commit->id)->onQueue('ai');
+                GenerateCommitSummaryJob::dispatch($commit->id);
             }
         }
 

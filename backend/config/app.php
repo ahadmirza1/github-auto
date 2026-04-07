@@ -59,6 +59,8 @@ return [
 
     'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
 
+    'webhook_base_url' => env('WEBHOOK_BASE_URL'),
+
     'asset_url' => env('ASSET_URL'),
 
     /*

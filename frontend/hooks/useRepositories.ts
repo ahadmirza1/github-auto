@@ -3,6 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   activateWebhook,
+  deactivateWebhook,
   getRepositories,
   syncRepositories,
 } from '@/lib/api/repositories'
@@ -30,6 +31,17 @@ export function useActivateWebhook() {
 
   return useMutation({
     mutationFn: activateWebhook,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['repositories'] })
+    },
+  })
+}
+
+export function useDeactivateWebhook() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: deactivateWebhook,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['repositories'] })
     },

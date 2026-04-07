@@ -18,7 +18,6 @@ class GenerateCommitSummaryJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public string $queue = 'ai';
     public int $tries = 3;
     public array $backoff = [30, 60, 120];
 

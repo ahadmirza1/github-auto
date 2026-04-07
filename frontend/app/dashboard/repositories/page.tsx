@@ -1,12 +1,13 @@
 'use client'
 
-import { useRepositories, useSyncRepositories, useActivateWebhook } from '@/hooks/useRepositories'
+import { useRepositories, useSyncRepositories, useActivateWebhook, useDeactivateWebhook } from '@/hooks/useRepositories'
 import Link from 'next/link'
 
 export default function RepositoriesPage() {
   const { data, isLoading } = useRepositories()
   const sync = useSyncRepositories()
   const activateWebhook = useActivateWebhook()
+  const deactivateWebhook = useDeactivateWebhook()
 
   if (isLoading) return <p className="text-sm text-black">Loading repositories…</p>
 
@@ -46,9 +47,18 @@ export default function RepositoriesPage() {
             </div>
             <div className="flex items-center gap-3">
               {repo.webhook_active ? (
-                <span className="text-xs text-white font-medium bg-black px-2 py-0.5 rounded-full">
-                  Webhook active
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-white font-medium bg-black px-2 py-0.5 rounded-full">
+                    Webhook active
+                  </span>
+                  <button
+                    onClick={() => deactivateWebhook.mutate(repo.id)}
+                    disabled={deactivateWebhook.isPending}
+                    className="text-xs border border-black/30 text-black px-3 py-1 rounded-lg hover:bg-red-600 hover:text-white hover:border-red-600 transition-colors"
+                  >
+                    Disable
+                  </button>
+                </div>
               ) : (
                 <button
                   onClick={() => activateWebhook.mutate(repo.id)}

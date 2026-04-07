@@ -16,6 +16,9 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/webhooks/github', [WebhookController::class, 'github'])
     ->withoutMiddleware('throttle');
 
+// GitHub OAuth callback — public (browser redirect from GitHub, no Bearer token)
+Route::get('/integrations/github/callback', [GitHubController::class, 'callback']);
+
 // Authenticated
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth/me', [AuthController::class, 'me']);
@@ -26,13 +29,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // GitHub integration
     Route::get('/integrations/github/redirect', [GitHubController::class, 'redirect']);
-    Route::get('/integrations/github/callback', [GitHubController::class, 'callback']);
     Route::delete('/integrations/github', [GitHubController::class, 'disconnect']);
 
     // Repositories
     Route::get('/repositories', [RepositoriesController::class, 'index']);
     Route::post('/repositories/sync', [RepositoriesController::class, 'sync']);
     Route::post('/repositories/{repository}/webhook', [RepositoriesController::class, 'activateWebhook']);
+    Route::delete('/repositories/{repository}/webhook', [RepositoriesController::class, 'deactivateWebhook']);
 
     // Commits
     Route::get('/repositories/{repository}/commits', [CommitsController::class, 'index']);
