@@ -3,7 +3,7 @@ export default function GuidePage() {
     <div className="max-w-2xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold mb-1">Getting started</h1>
-        <p className="text-sm text-gray-700">Follow these steps to see GitHub Auto in action.</p>
+        <p className="text-sm text-black">Follow these steps to see GitHub Auto in action.</p>
       </div>
 
       {steps.map((step, i) => (
@@ -15,8 +15,8 @@ export default function GuidePage() {
             {i < steps.length - 1 && <div className="w-px flex-1 bg-gray-200 mt-2" />}
           </div>
           <div className="pb-10 flex-1">
-            <h2 className="font-semibold text-sm text-gray-900 mb-1">{step.title}</h2>
-            <p className="text-sm text-gray-700 leading-relaxed mb-3">{step.description}</p>
+            <h2 className="font-semibold text-sm text-black mb-1">{step.title}</h2>
+            <p className="text-sm text-black leading-relaxed mb-3">{step.description}</p>
 
             {step.code && (
               <pre className="bg-gray-950 text-green-400 text-xs rounded-xl px-4 py-3 overflow-x-auto font-mono leading-relaxed">
@@ -27,7 +27,7 @@ export default function GuidePage() {
             {step.tips && (
               <ul className="mt-3 space-y-1">
                 {step.tips.map((tip, j) => (
-                  <li key={j} className="flex items-start gap-2 text-xs text-gray-700">
+                  <li key={j} className="flex items-start gap-2 text-xs text-black">
                     <span className="text-blue-500 mt-0.5">→</span>
                     <span>{tip}</span>
                   </li>
@@ -44,8 +44,8 @@ export default function GuidePage() {
         <div className="space-y-4">
           {faq.map((item, i) => (
             <div key={i} className="border rounded-xl p-4">
-              <p className="text-sm font-semibold text-gray-900 mb-1">{item.q}</p>
-              <p className="text-sm text-gray-700 leading-relaxed">{item.a}</p>
+              <p className="text-sm font-semibold text-black mb-1">{item.q}</p>
+              <p className="text-sm text-black leading-relaxed">{item.a}</p>
             </div>
           ))}
         </div>

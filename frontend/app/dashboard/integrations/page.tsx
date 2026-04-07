@@ -31,7 +31,7 @@ function IntegrationsContent() {
   return (
     <div className="max-w-2xl">
       <h1 className="text-2xl font-bold mb-1">Integrations</h1>
-      <p className="text-sm text-gray-700 mb-6">Connect your tools to unlock the full workflow.</p>
+      <p className="text-sm text-black mb-6">Connect your tools to unlock the full workflow.</p>
 
       {banner && (
         <div
@@ -86,7 +86,7 @@ function IntegrationsContent() {
 
 export default function IntegrationsPage() {
   return (
-    <Suspense fallback={<div className="text-sm text-gray-600">Loading…</div>}>
+    <Suspense fallback={<div className="text-sm text-black">Loading…</div>}>
       <IntegrationsContent />
     </Suspense>
   )
@@ -112,7 +112,7 @@ function IntegrationCard({
 }: IntegrationCardProps) {
   return (
     <div className="bg-white border rounded-xl p-5 flex items-start gap-4">
-      <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center shrink-0">
+      <div className="w-10 h-10 rounded-lg bg-black/5 flex items-center justify-center shrink-0">
         {icon}
       </div>
 
@@ -125,21 +125,21 @@ function IntegrationCard({
             </span>
           )}
           {comingSoon && (
-            <span className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full font-medium">
+            <span className="text-xs bg-black/5 text-black px-2 py-0.5 rounded-full font-medium">
               Coming soon
             </span>
           )}
         </div>
-        <p className="text-xs text-gray-700 leading-relaxed">{description}</p>
+        <p className="text-xs text-black leading-relaxed">{description}</p>
         {connected && connectedAs && (
-          <p className="text-xs text-gray-600 mt-1">Connected as <span className="font-medium text-gray-600">@{connectedAs}</span></p>
+          <p className="text-xs text-black mt-1">Connected as <span className="font-medium text-black">@{connectedAs}</span></p>
         )}
       </div>
 
       {!comingSoon && (
         <div className="shrink-0">
           {isLoading ? (
-            <div className="w-20 h-8 bg-gray-100 rounded-lg animate-pulse" />
+            <div className="w-20 h-8 bg-black/5 rounded-lg animate-pulse" />
           ) : connected ? (
             <button
               onClick={onDisconnect}
@@ -152,7 +152,7 @@ function IntegrationCard({
             <button
               onClick={onConnect}
               disabled={connecting}
-              className="text-xs bg-gray-900 text-white px-3 py-1.5 rounded-lg hover:bg-gray-700 disabled:opacity-50"
+              className="text-xs bg-black text-white px-3 py-1.5 rounded-lg hover:bg-gray-800 disabled:opacity-50"
             >
               {connecting ? 'Redirecting…' : 'Connect'}
             </button>
@@ -165,7 +165,7 @@ function IntegrationCard({
 
 function GitHubIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current text-gray-800">
+    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current text-black">
       <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
     </svg>
   )

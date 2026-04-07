@@ -14,28 +14,28 @@ export default function CommitsPage() {
 
   const { data, isLoading, error } = useCommits(repositoryId, branch)
 
-  if (isLoading) return <p className="text-sm text-gray-500">Loading commits…</p>
-  if (error) return <p className="text-sm text-red-500">Failed to load commits.</p>
+  if (isLoading) return <p className="text-sm text-black">Loading commits…</p>
+  if (error) return <p className="text-sm text-red-600">Failed to load commits.</p>
 
   return (
     <div>
       <div className="flex items-center gap-4 mb-6">
         <button
           onClick={() => router.back()}
-          className="text-sm text-gray-500 hover:text-gray-800"
+          className="text-sm text-black hover:underline"
         >
           ← Back
         </button>
-        <h1 className="text-2xl font-bold">Commits</h1>
+        <h1 className="text-2xl font-bold text-black">Commits</h1>
         {branch && (
-          <span className="text-sm bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-mono">
+          <span className="text-sm bg-black text-white px-2 py-0.5 rounded font-mono">
             {branch}
           </span>
         )}
       </div>
 
       {!data?.data.length && (
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-black">
           No commits yet. Push to a connected repo to see them here.
         </p>
       )}
@@ -47,7 +47,7 @@ export default function CommitsPage() {
       </div>
 
       {data && data.last_page > 1 && (
-        <div className="mt-6 text-sm text-gray-500 text-center">
+        <div className="mt-6 text-sm text-black opacity-50 text-center">
           Page {data.current_page} of {data.last_page}
         </div>
       )}
