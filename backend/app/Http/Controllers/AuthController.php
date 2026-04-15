@@ -12,9 +12,6 @@ class AuthController extends Controller
 {
     public function __construct(private readonly AuthService $authService) {}
 
-    /**
-     * Function for registration
-     */
     public function register(RegisterRequest $request): JsonResponse
     {
         $result = $this->authService->register($request->validated());
