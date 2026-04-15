@@ -8,13 +8,18 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class CommitService
 {
-    public function listForRepository(Repository $repository, ?string $branch = null): LengthAwarePaginator
+    public function listForRepository(Repository $repository, ?string $branch = null, int $perPage = 30): LengthAwarePaginator
     {
         return Commit::with('summary')
             ->where('repository_id', $repository->id)
             ->when($branch, fn ($q) => $q->where('branch', $branch))
             ->orderByDesc('committed_at')
-            ->paginate(30);
+            ->paginate($perPage);
+    }
+
+    public function countForRepository(Repository $repository): int
+    {
+        return Commit::where('repository_id', $repository->id)->count();
     }
 
     public function getWithSummary(string $sha): Commit
