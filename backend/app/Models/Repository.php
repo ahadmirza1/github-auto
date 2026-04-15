@@ -19,6 +19,7 @@ class Repository extends Model
         'private',
         'webhook_secret',
         'webhook_active',
+        'webhook_id',
         'synced_at',
     ];
 
@@ -50,5 +51,15 @@ class Repository extends Model
         $secret = Str::random(32);
         $this->update(['webhook_secret' => $secret]);
         return $secret;
+    }
+
+    public function isPrivate(): bool
+    {
+        return (bool) $this->private;
+    }
+
+    public function hasActiveWebhook(): bool
+    {
+        return (bool) $this->webhook_active && $this->webhook_id !== null;
     }
 }
