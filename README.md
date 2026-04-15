@@ -12,3 +12,4 @@
 3. Job extracts commits, queues GenerateCommitSummaryJob per commit
 4. AI summarizer fetches diff, sends to OpenAI, stores structured summary
 5. Frontend polls and displays the summary card
+# و 20:15:24 PKT ت 15 اپریل 2026
