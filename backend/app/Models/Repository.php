@@ -62,4 +62,9 @@ class Repository extends Model
     {
         return (bool) $this->webhook_active && $this->webhook_id !== null;
     }
+
+    public function getDisplayName(): string
+    {
+        return $this->full_name ?? $this->name;
+    }
 }
